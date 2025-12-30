@@ -1,9 +1,9 @@
 CPPSRC:=$(wildcard *.cpp)
 
 all:
-	${CXX} -o addrgen.bin ${CPPSRC} ${INCLUDE} -I${CUDA_INCLUDE} ${CXXFLAGS} ${LIBS} -laddressutil -lsecp256k1 -lcryptoutil -lsecp256k1 -lutil -lcmdparse
+	${CXX} -o addrgen.exe ${CPPSRC} ${INCLUDE} -I${CUDA_INCLUDE} ${CXXFLAGS} ${LIBS} -laddressutil -lsecp256k1 -lcryptoutil -lsecp256k1 -lutil -lcmdparse -lbcrypt
 	mkdir -p $(BINDIR)
-	cp addrgen.bin $(BINDIR)/addrgen
+	cp addrgen.exe $(BINDIR)/addrgen.exe
 
 
 clean:
