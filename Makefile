@@ -13,12 +13,18 @@ CXX=g++
 CXXFLAGS=-O2 -std=c++11
 
 # CUDA variables
-COMPUTE_CAP=30
+COMPUTE_CAP=52
 NVCC=nvcc
-NVCCFLAGS=-std=c++11 -gencode=arch=compute_${COMPUTE_CAP},code=\"sm_${COMPUTE_CAP}\" -Xptxas="-v" -Xcompiler "${CXXFLAGS}"
+NVCCFLAGS=-std=c++11 -gencode=arch=compute_${COMPUTE_CAP},code="sm_${COMPUTE_CAP}" -Xptxas="-v" -Xcompiler "${CXXFLAGS}"
+ifeq ($(OS),Windows_NT)
+CUDA_HOME=/c/Program\ Files/NVIDIA\ GPU\ Computing\ Toolkit/CUDA/v11.8
+CUDA_LIB=${CUDA_HOME}/lib/x64
+CUDA_INCLUDE=${CUDA_HOME}/include
+else
 CUDA_HOME=/usr/local/cuda
 CUDA_LIB=${CUDA_HOME}/lib64
 CUDA_INCLUDE=${CUDA_HOME}/include
+endif
 CUDA_MATH=$(CUR_DIR)/cudaMath
 
 # OpenCL variables
